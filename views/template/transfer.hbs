@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        table{
+            text-align: center;
+            font-family: cursive;
+            margin-top: 1rem;
+            font-size: large;
+            background-color: rgb(215, 228, 224);
+        }
+    </style>
+</head>
+<body>
+    {{>header}}
+    {{#if message}}
+    <div class="alert alert-danger container text-center" role="alert">
+           <strong>{{message}}</strong>
+    </div>
+    {{/if}}
+    <table class="table table-sm container">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email Id</th>
+                <th scope="col">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{deet.name}}</td>
+                <td>{{deet.email}}</td>
+                <td>{{deet.balance}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form class="container col-md-6 border" action="/customer/{{deet.id}}" method="POST">
+    <div class="text-center">
+        MONEY TRANSFER
+    </div>
+  <div class="form-group">
+    <label for="receiver">Send Money To</label>
+    <select class="form-control mb-3" id="receiver" name="receiver">
+    {{#each list}}
+      <option>{{this.name}}</option>
+    {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+   <label for="amount">Amount</label>
+    <input type="number" class="form-control" id="amount" placeholder="Amount" name="amount">
+  </div>
+
+    <div class="mb-4 text-center">
+   <button type="submit" class="btn btn-primary">Transfer</button>
+   </div>
+  </form>
+
+</body>
+</html>

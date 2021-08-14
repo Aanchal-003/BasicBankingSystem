@@ -14,10 +14,14 @@ route.get('/customer',async (req,res) => {
 //         list: docs
 //     });
 // })
+try{
 const cus = await Customer.find({});
     res.render('customer',{
         list : cus,
     });
+}catch(err) {
+    res.status(400).send(err);
+}
 });
 
 route.get('/customer/:id', async(req,res) => {
@@ -65,14 +69,18 @@ route.post('/customer/:id', async(req,res) => {
     } catch (err) {
         res.status(400).send(err);
     }
-})
+});
 
 route.get('/transaction', async(req,res) => {
+    try{
     const tran = await Transaction.find({});
     res.render('transaction', {
         history: tran,
         message: req.flash('success')
     });
-})
+}catch(err){
+    res.status(400).send(err);
+}
+});
 
 module.exports = route;

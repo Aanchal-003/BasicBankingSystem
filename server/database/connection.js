@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const Customer = require('../model/customer');
 const Transaction = require('../model/transaction');
 
-mongoose.connect("mongodb://localhost:27017/customers", {
+const DB = process.env.DATABASE;
+
+mongoose.connect(DB, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -27,7 +29,7 @@ const allCustomers = [
     },
     {
         name:'Shree Sanghvi',
-        email:'sanshvishree36@gmail.com',
+        email:'sanghvishree36@gmail.com',
         balance: 45000
     },
     {
@@ -63,22 +65,5 @@ const allCustomers = [
 ]
 
 // Customer.insertMany(allCustomers)
-// .then((res) => console.log(res))
-// .catch((err) => console.log(err));
-
-const allTrans = [
-    {
-    sender: 'A',
-    receiver: 'B',
-    amount: 1000
-},
-    {
-    sender: 'sd',
-    receiver: 'sd',
-    amount: 1000
-}
-]
-
-// Transaction.insertMany(allTrans)
 // .then((res) => console.log(res))
 // .catch((err) => console.log(err));

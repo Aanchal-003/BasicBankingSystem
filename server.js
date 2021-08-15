@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env'});
 const express = require('express');
 const path = require('path');
 const route = require('./server/routes/router');
@@ -6,11 +8,12 @@ const hbs = require('hbs');
 const session = require('express-session');
 const flash = require('connect-flash');
 
+
 const port = process.env.PORT || 8000;
 const app = express();
 
 app.use(session({
-    secret: 'secret',
+    secret: process.env.SECRET,
     cookie: {maxAge: 60000},
     resave: false,
     saveUninitialized: false
